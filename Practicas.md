@@ -11,192 +11,325 @@ Aplicar los conceptos fundamentales de **Ruby on Rails** mediante el desarrollo 
 * ✅ Validaciones
 
 ---
-
-# 📚 Práctica 1: Gestión de Materias
+# 🛒 Práctica 1: Sistema de Mini Súper
 
 ## 📝 Descripción
 
-Desarrollar una aplicación que permita registrar y administrar las materias de una institución académica.
+Desarrollar una aplicación web para administrar un mini súper.
 
-## 🗄️ Esquema de Base de Datos
+El sistema deberá permitir:
 
-### 📖 Tabla: Materias
+* 📦 Gestionar productos.
+* 🏷️ Clasificar productos por categorías y subcategorías.
+* 🧾 Registrar facturas de venta.
+* 💰 Calcular el total de cada factura.
+* 📈 Llevar un control básico de ingresos generados por las ventas.
 
-| Campo      | Tipo     |
-| ---------- | -------- |
-| nombre     | string   |
-| codigo     | string   |
-| creditos   | integer  |
-
-## ✅ Requerimientos
-
-* Crear el modelo **Materia**.
-* Generar el scaffold correspondiente.
-* Implementar las operaciones CRUD:
-
-  * ➕ Crear materia.
-  * 🔍 Consultar materias.
-  * ✏️ Editar materia.
-  * ❌ Eliminar materia.
-* Mostrar una tabla con todas las materias registradas.
-* Implementar las siguientes validaciones:
-
-  * 📌 Nombre obligatorio.
-  * 🔒 Código único.
-  * 📊 Créditos mayores a cero.
-
-## 🎓 Competencias que se evalúan
-
-* Creación de modelos.
-* Uso de migraciones.
-* Generación de scaffolds.
-* Validaciones básicas.
+Toda la interfaz debe desarrollarse utilizando **Ruby on Rails + Tailwind CSS**.
 
 ---
-
-# 👨‍🎓 Práctica 2: Gestión de Estudiantes y Materias
-
-## 📝 Descripción
-
-Desarrollar una aplicación para administrar estudiantes y asociarlos a una materia.
-
 ## 🗄️ Esquema de Base de Datos
 
-### 📖 Tabla: Materias
-
-| Campo  | Tipo    |
-| ------ | ------- |
-| id     | integer |
-| nombre | string  |
-| codigo | string  |
-
-### 👨‍🎓 Tabla: Estudiantes
-
-| Campo      | Tipo    |
-| ---------- | ------- |
-| id         | integer |
-| nombre     | string  |
-| apellido   | string  |
-| correo     | string  |
-| materia_id | integer |
-
-## 🔗 Relación
-
 ```text
-📖 Materia (1) ────────── (N) 👨‍🎓 Estudiantes
+🏷️ Categoría
+- nombre:string
+
+📂 Subcategoría
+- nombre:string
+- categoria_id:integer
+
+📦 Producto
+- nombre:string
+- precio:decimal
+- stock:integer
+- subcategoria_id:integer
+
+🧾 Factura
+- fecha:datetime
+- total:decimal
+
+🛒 DetalleFactura
+- factura_id:integer
+- producto_id:integer
+- cantidad:integer
+- subtotal:decimal
 ```
-
-Una materia puede tener muchos estudiantes.
-
-## ✅ Requerimientos
-
-* Crear ambos modelos.
-* Configurar las relaciones:
-
-  * 📖 Materia tiene muchos estudiantes.
-  * 👨‍🎓 Estudiante pertenece a una materia.
-* Crear formularios para registrar estudiantes.
-* Mostrar en la vista:
-
-  * 👤 Nombre completo.
-  * 📧 Correo electrónico.
-  * 📚 Materia asignada.
-* Implementar validaciones:
-
-  * 📧 Correo obligatorio.
-  * 👤 Nombre obligatorio.
-* Mostrar la cantidad de estudiantes por materia.
-
-## 🎓 Competencias que se evalúan
-
-* Relaciones 1:N.
-* Claves foráneas.
-* Consultas mediante asociaciones.
-* Formularios en Rails.
-
 ---
 
-# 🏛️ Práctica 3: Sistema de Matrícula Académica
-
-## 📝 Descripción
-
-Desarrollar un sistema donde los estudiantes puedan matricular varias materias.
-
-## 🗄️ Esquema de Base de Datos
-
-### 👨‍🎓 Tabla: Estudiantes
-
-| Campo  | Tipo    |
-| ------ | ------- |
-| id     | integer |
-| nombre | string  |
-| correo | string  |
-
-### 📖 Tabla: Materias
-
-| Campo  | Tipo    |
-| ------ | ------- |
-| id     | integer |
-| nombre | string  |
-| codigo | string  |
-
-### 📋 Tabla: Matrículas
-
-| Campo           | Tipo    |
-| --------------- | ------- |
-| id              | integer |
-| estudiante_id   | integer |
-| materia_id      | integer |
-| fecha_matricula | date    |
-
-## 🔗 Relación
-
-```text
-👨‍🎓 Estudiantes
-       │
-       │
-       ▼
-📋 Matrículas
-       ▲
-       │
-       │
-📖 Materias
-```
-
-Relación **Muchos a Muchos (N:N)**.
-
 ## ✅ Requerimientos
 
-* Crear los tres modelos.
-* Configurar correctamente las asociaciones.
-* Permitir matricular estudiantes en varias materias.
+### 📦 Gestión de Productos
+
+* Crear CRUD completo de productos.
+* Crear CRUD completo de categorías.
+* Crear CRUD completo de subcategorías.
 * Mostrar:
 
-  * 👨‍🎓 Estudiante.
-  * 📖 Materias matriculadas.
-  * 📅 Fecha de matrícula.
-* Evitar matrículas duplicadas.
-* Crear una página para visualizar todas las matrículas.
-* Mostrar cuántas materias tiene matriculado cada estudiante.
-
-## 🎓 Competencias que se evalúan
-
-* Relaciones N:N.
-* Tablas intermedias.
-* Consultas avanzadas.
-* Validaciones personalizadas.
+  * Nombre del producto.
+  * Categoría.
+  * Subcategoría.
+  * Precio.
+  * Stock disponible.
 
 ---
 
-# ⭐ Desafío 
+### 🧾 Gestión de Facturas
 
-Implementar mejoras visuales utilizando:
+* Crear una factura.
 
-* 🎨 Tailwind CSS.
-* 🃏 Tarjetas (Cards).
-* 📱 Diseño responsivo.
-* 🔔 Mensajes flash.
-* 🧭 Barra de navegación.
-* 🌙 Modo oscuro (opcional).
+* Agregar múltiples productos a una factura.
+
+* Seleccionar cantidad de cada producto.
+
+* Calcular automáticamente:
+
+  * Subtotal por línea.
+  * Total de la factura.
+
+* Mostrar el detalle completo de la compra.
+
+---
+
+### 📈 Reporte de Ingresos
+
+Crear una página que muestre:
+
+* Total de facturas registradas.
+* Total de ingresos generados.
+* Cantidad de productos vendidos.
+
+---
+
+## ✅ Validaciones
+
+### Categorías
+
+* Nombre obligatorio.
+
+### Subcategorías
+
+* Nombre obligatorio.
+
+### Productos
+
+* Nombre obligatorio.
+* Precio mayor que cero.
+* Stock mayor o igual a cero.
+
+### Facturas
+
+* Deben contener al menos un producto.
+
+### Detalle Factura
+
+* Cantidad mayor que cero.
+
+---
+
+# 🔐 Práctica 2: Autenticación con JWT para el Sistema de Mini Súper
+
+## 🎯 Objetivo
+
+Extender la aplicación desarrollada en la Práctica 1 implementando autenticación mediante **JSON Web Tokens (JWT)** para proteger los recursos del sistema.
+
+Los usuarios deberán autenticarse para poder acceder a las funcionalidades del Mini Súper.
+
+---
+
+# 📝 Descripción
+
+Utilizando la aplicación desarrollada en la práctica anterior:
+
+* 🛒 Sistema de Mini Súper
+* 📦 Gestión de productos
+* 🏷️ Categorías y subcategorías
+* 🧾 Facturación
+* 📈 Reporte de ingresos
+
+Agregar un sistema de autenticación basado en **JWT** que permita:
+
+* Registrar usuarios.
+* Iniciar sesión.
+* Generar tokens.
+* Validar tokens.
+* Restringir el acceso a los endpoints protegidos.
+
+---
+
+# 🗄️ Nueva Tabla: Usuarios
+
+```text
+👤 Usuario
+- nombre:string
+- email:string
+- password_digest:string
+```
+
+> Utilizar `has_secure_password` para el manejo seguro de contraseñas.
+
+---
+
+# 🔗 Flujo de Autenticación
+
+```text
+👤 Usuario
+      │
+      ▼
+🔑 Login
+      │
+      ▼
+🎟️ JWT Token
+      │
+      ▼
+🔒 Endpoints Protegidos
+```
+
+---
+
+# ✅ Requerimientos
+
+## 👤 Gestión de Usuarios
+
+Implementar:
+
+* Registro de usuarios.
+* Inicio de sesión.
+* Cierre de sesión (opcional).
+* Validación de credenciales.
+
+---
+
+## 🔑 Generación de JWT
+
+Al iniciar sesión correctamente:
+
+* Generar un JWT.
+* Retornar el token al usuario.
+* Incluir información básica del usuario dentro del payload.
+
+---
+
+## 🔒 Protección de Rutas
+
+Los siguientes módulos deberán requerir autenticación:
+
+* 📦 Productos
+* 🏷️ Categorías
+* 📂 Subcategorías
+* 🧾 Facturas
+* 📈 Reporte de ingresos
+
+Si no se envía un token válido:
+
+```json
+{
+  "error": "No autorizado"
+}
+```
+# 📄 Práctica 3: Generación de Facturas en PDF
+
+## 🎯 Objetivo
+
+Extender la aplicación desarrollada en las prácticas anteriores para generar automáticamente una factura en formato PDF después de completar una venta.
+
+El sistema deberá permitir descargar la factura generada desde la interfaz web.
+
+---
+
+# 📝 Descripción
+
+Partiendo del sistema desarrollado previamente:
+
+* 🛒 Gestión de productos.
+* 🧾 Facturación.
+* 🔐 Autenticación con JWT.
+
+Implementar la generación de facturas en formato PDF cuando una venta sea finalizada.
+
+---
+
+# 🚀 Flujo de Funcionamiento
+
+```text
+🛒 Agregar Productos
+          │
+          ▼
+🧾 Crear Factura
+          │
+          ▼
+💳 Pagar Factura
+          │
+          ▼
+📄 Generar PDF
+          │
+          ▼
+🪟 Modal de Confirmación
+          │
+          ▼
+⬇️ Descargar Factura
+```
+
+---
+
+# ✅ Requerimientos
+
+## 📄 Generación de PDF
+
+Al presionar el botón:
+
+```text
+💳 Pagar Factura
+```
+
+El sistema deberá:
+
+1. Registrar la venta.
+2. Calcular el total.
+3. Generar un archivo PDF.
+4. Asociar el PDF a la factura.
+5. Mostrar una ventana modal.
+
+---
+
+## 🪟 Modal de Confirmación
+
+Después de completar el pago deberá mostrarse un modal similar a:
+
+```text
+✅ Factura generada correctamente
+
+La compra ha sido registrada.
+
+[⬇️ Descargar Factura]
+[❌ Cerrar]
+```
+
+---
+
+## 📋 Información del PDF
+
+El documento debe incluir:
+
+### Encabezado
+
+* Nombre del Mini Súper.
+* Fecha de emisión.
+* Número de factura.
+
+### Información de la compra
+
+| Producto | Cantidad | Precio | Subtotal |
+| -------- | -------- | ------ | -------- |
+
+### Resumen
+
+* Total de productos.
+* Monto total pagado.
+
+### Pie de página
+
+```text
+Gracias por su compra.
+```
 
 ---
